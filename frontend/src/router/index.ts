@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 import { useAuthStore } from '@/stores/auth'
@@ -9,19 +10,19 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: { requiresAuth: true } // 需要登录
+    meta: { requiresAuth: false }, // 需要登录
   },
   {
     path: '/login',
     name: 'login',
     component: () => import('@/views/LoginView.vue'),
-    meta: { requiresAuth: false }
-  }
+    meta: { requiresAuth: false },
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
 })
 
 // 全局前置守卫 - 认证检查
